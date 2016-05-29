@@ -15,7 +15,7 @@ Ce script s'installe très bien sur un serveur local
     cd business_trips
     touch parameters.js
 
-Dans le Spreadsheet 'NOTE DE FRAIS',
+Dans le Spreadsheet 'NOTE DE FRAIS' (copie celui de The Legend->RH dans ton dossier perso),
 1- Cliquer sur Outils->Editeur de scripts
 2- Coller le contenu du fichier code.gs
 3- Publier en tant qu'Exécutable d'API
@@ -24,3 +24,7 @@ Dans le Spreadsheet 'NOTE DE FRAIS',
 ## Liens utiles
 
 * [https://console.developers.google.com](https://console.developers.google.com)
+
+
+
+*NB : Ce script n'est pas stable et bourré d'erreurs. Le bon remplissage de la fiche des notes de frais est de la responsabilité du propriétaire de cette fiche.* 

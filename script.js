@@ -1,7 +1,12 @@
 var SCOPES = [
     "https://www.googleapis.com/auth/calendar.readonly",
     "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"];
+    "https://www.googleapis.com/auth/drive"
+];
+
+$( document ).ready(function() {
+    $('#link').attr('href', 'https://docs.google.com/spreadsheets/d/'+SPREADSHEET_ID);
+});
 
 /**
  * Check if current user has authorized this application.
@@ -88,7 +93,7 @@ function listEvents() {
                 when = getDate(when, true);
                 if (event.location) {
                     $('#output ul').append("" +
-                        "<li class='list-group-item event' id='event-" + i + "'>" +
+                        "<li class='list-group-item event strong' id='event-" + i + "'>" +
                         event.summary + ' (' + when + ')'
                     );
                     getDistance(event.location, i);
@@ -120,7 +125,7 @@ function getDistance(destination, eventId) {
             var distance = response.rows[0].elements[0].distance
             $('#event-'+eventId).append("" +
                 "<span class='badge'>"+distance.text+"</span>" +
-                "<button class='btn btn-default' data-id='"+eventId+"' data-km='"+distance.value+"'>Nouveau déplacement</button>");
+                "<button class='btn btn-primary right' data-id='"+eventId+"' data-km='"+distance.value+"'>Nouveau déplacement</button>");
             $('#event-'+eventId+' button').click(function(){newTrip($(this).data('id'))});
             events[eventId].dist = (distance.value/1000)*2; // Convert to km and double for return
         } else {
