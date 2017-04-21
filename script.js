@@ -52,6 +52,28 @@ function handleAuthClick(event) {
 }
 
 /**
+ * Signout function
+ */
+function signout() {
+    var token = gapi.auth.getToken();
+    if (token) {
+        var accessToken = gapi.auth.getToken().access_token;
+        if (accessToken) {
+            // make http get request towards: 'https://accounts.google.com/o/oauth2/revoke?token=' + accessToken
+            $.ajax({
+                url: 'https://accounts.google.com/o/oauth2/revoke?token=' + accessToken,
+                success: function(data){
+		    console.log(data);
+		}
+	    });
+        }
+    }
+    gapi.auth.setToken(null);
+    gapi.auth.signOut();
+    location.reload();
+}
+
+/**
  * Load Google Calendar client library. List upcoming events
  * once client library is loaded.
  */
@@ -115,7 +137,7 @@ function getDistance(destination, eventId) {
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
         {
-            origins: ["La Loupe"],
+            origins: ["Toulouse"],
             destinations: [destination],
             travelMode: google.maps.TravelMode.DRIVING
         }, callback);
