@@ -1,4 +1,23 @@
+function createHomePage() {
+  // create a new site
+  var site = SitesApp.createSite("wildcodeschool.fr", "trip", "Saisie des déplacements", "Cet outil sert à saisir les déplacements comme notes de frais");
+
+  // Get latest events from calendar
+  var eventPage = site.createAnnouncementsPage("Events", "events", "");
+  var d1 = new Date("1/1/2017");
+  var d2 = new Date("3/2/2017");
+  var events = CalendarApp.getOwnedCalendarById("romain@wildcodeschool.fr").getEvents(d1, d2);
+  for (var i = 0; i < events.length; i++) {
+    var message = "There will be a soccer match from " + events[i].getStartTime() + " until " + events[i].getEndTime() + "!";
+    eventPage.createAnnouncement("Soccer Match #" + (i + 1), message);
+  }
+}
+
 function newSheet(ss_id, sheet_name) {
+
+  // Debug values
+  // var ss_id = '1qareee3-2PmdenZ2AAGinrv-MG7t1hDQMduI7kTywGw';
+  // var sheet_name = 'avril 2016';
 
   // Get sheet
   var source = SpreadsheetApp.openById(ss_id);
@@ -17,6 +36,10 @@ function newSheet(ss_id, sheet_name) {
 }
 
 function addTrip(ss_id, sheet_name, str_date, title, km) {
+
+  // Debug values
+  // var sheet = SpreadsheetApp.openById('1qareee3-2PmdenZ2AAGinrv-MG7t1hDQMduI7kTywGw').getSheets()[3];
+  // var str_date = 'Salut';
 
   // Get sheet
   var source = SpreadsheetApp.openById(ss_id);
